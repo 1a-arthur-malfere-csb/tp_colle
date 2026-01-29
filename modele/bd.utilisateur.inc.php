@@ -2,8 +2,8 @@
 
 include_once "bd.inc.php";
 
-function getUtilisateurs() {
-
+function getUtilisateurs()
+{
     try {
         $cnx = connexionPDO();
         $req = $cnx->prepare("select * from utilisateur");
@@ -21,14 +21,14 @@ function getUtilisateurs() {
     return $resultat;
 }
 
-function getUtilisateurByMailU($mailU) {
-
+function getUtilisateurByMailU($mailU)
+{
     try {
         $cnx = connexionPDO();
         $req = $cnx->prepare("select * from utilisateur where mailU=:mailU");
-        $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
+        $req->bindValue(":mailU", $mailU, PDO::PARAM_STR);
         $req->execute();
-        
+
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -37,16 +37,22 @@ function getUtilisateurByMailU($mailU) {
     return $resultat;
 }
 
-function addUtilisateur($mailU, $mdpU, $pseudoU) {
+function addUtilisateur($mailU, $mdpU, $pseudoU)
+{
     try {
         $cnx = connexionPDO();
 
         $mdpUCrypt = crypt($mdpU, "sel");
-        $req = $cnx->prepare("insert into utilisateur (mailU, mdpU, pseudoU) values(:mailU,:mdpU,:pseudoU)");
-        $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
-        $req->bindValue(':mdpU', $mdpUCrypt, PDO::PARAM_STR);
-        $req->bindValue(':pseudoU', $pseudoU, PDO::PARAM_STR);
-        
+        $dateInscU = date("Y-m-d"); // Date d'inscription automatique (aujourd'hui)
+
+        $req = $cnx->prepare(
+            "insert into utilisateur (mailU, mdpU, pseudoU, dateInscU) values(:mailU,:mdpU,:pseudoU,:dateInscU)",
+        );
+        $req->bindValue(":mailU", $mailU, PDO::PARAM_STR);
+        $req->bindValue(":mdpU", $mdpUCrypt, PDO::PARAM_STR);
+        $req->bindValue(":pseudoU", $pseudoU, PDO::PARAM_STR);
+        $req->bindValue(":dateInscU", $dateInscU, PDO::PARAM_STR);
+
         $resultat = $req->execute();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -55,11 +61,9 @@ function addUtilisateur($mailU, $mdpU, $pseudoU) {
     return $resultat;
 }
 
-
-
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     // prog principal de test
-    header('Content-Type:text/plain');
+    header("Content-Type:text/plain");
 
     echo "getUtilisateurs() : \n";
     print_r(getUtilisateurs());

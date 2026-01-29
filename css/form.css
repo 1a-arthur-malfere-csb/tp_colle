@@ -1,20 +1,128 @@
-input[type=text],input[type=submit],input[type=password],input[type=checkbox],select,option{
-    padding : 5px;
-    margin : 5px; 
-    
+input[type="text"],
+input[type="submit"],
+input[type="password"],
+input[type="email"],
+input[type="checkbox"],
+select,
+option {
+    padding: 5px;
+    margin: 5px;
 }
 
-label{
-    padding-right : 25px;
-    
+label {
+    padding-right: 25px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-input[type=text],input[type=password]{
-    width : 400px;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 400px;
 }
 
-#commentaireForm{
-    width : 100%;
-    height : 70px;
+#commentaireForm {
+    width: 100%;
+    height: 70px;
 }
 
+/* Styles pour le formulaire d'inscription */
+.mentions-legales {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.9em;
+    max-width: 600px;
+}
+
+.mentions-legales h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.mentions-legales p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.consentement {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #fffbcc;
+    border: 1px solid #daa520;
+    border-radius: 5px;
+}
+
+.consentement input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.consentement label {
+    display: inline;
+    font-weight: normal;
+    padding-right: 0;
+}
+
+.champs-obligatoires {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Messages d'erreur et de succès */
+.erreur {
+    background-color: #ffebee;
+    border: 1px solid #f44336;
+    color: #c62828;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #e8f5e9;
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Style pour les CGU */
+.cgu-contenu {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.cgu-contenu h1 {
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.cgu-contenu h2 {
+    color: #555;
+    margin-top: 30px;
+}
+
+.cgu-contenu h3 {
+    color: #666;
+    margin-top: 20px;
+}
+
+.cgu-contenu ul {
+    margin-left: 20px;
+}
+
+.cgu-contenu li {
+    margin: 10px 0;
+}
