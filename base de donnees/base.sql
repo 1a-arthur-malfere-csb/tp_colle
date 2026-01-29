@@ -266,22 +266,22 @@ INSERT INTO `typeCuisine` (`idTC`, `libelleTC`) VALUES
 CREATE TABLE `utilisateur` (
   `mailU` varchar(150) NOT NULL,
   `mdpU` varchar(50) DEFAULT NULL,
-  `pseudoU` varchar(50) DEFAULT NULL
+  `pseudoU` varchar(50) DEFAULT NULL,
+  `dateInscU` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`mailU`, `mdpU`, `pseudoU`) VALUES
-('alex.garat@gmail.com', '$1$zvN5hYSQSQDFUIQSdufUQSDFznHF5osT.', '@lex'),
-('jj.soueix@gmail.com', '$1$zvN5hYMI$SDFGSDFGJqJSDJF.', 'drskott'),
-('mathieu.capliez@gmail.com', 'seSzpoUAQgIl.', 'pich'),
-('michel.garay@gmail.com', '$1$zvN5hYMI$VSatLQ6SDFGdsfgznHF5osT.', 'Mitch'),
-('nicolas.harispe@gmail.com', '$1$zvNDSFQSdfqsDfQsdfsT.', 'Nico40'),
-('test@bts.sio', 'seSzpoUAQgIl.', 'testeur SIO'),
-('yann@lechambon.fr', 'sej6dETYl/ea.', 'yann');
-
+INSERT INTO `utilisateur` (`mailU`, `mdpU`, `pseudoU`, `dateInscU`) VALUES
+('alex.garat@gmail.com', '$1$zvN5hYSQSQDFUIQSdufUQSDFznHF5osT.', '@lex', '2026-01-15'),
+('jj.soueix@gmail.com', '$1$zvN5hYMI$SDFGSDFGJqJSDJF.', 'drskott', '2026-02-20'),
+('mathieu.capliez@gmail.com', 'seSzpoUAQgIl.', 'pich', '2026-03-10'),
+('michel.garay@gmail.com', '$1$zvN5hYMI$VSatLQ6SDFGdsfgznHF5osT.', 'Mitch', '2026-04-05'),
+('nicolas.harispe@gmail.com', '$1$zvNDSFQSdfqsDfQsdfsT.', 'Nico40', '2026-05-12'),
+('test@bts.sio', 'seSzpoUAQgIl.', 'testeur SIO', '2024-06-01'),
+('yann@lechambon.fr', 'sej6dETYl/ea.', 'yann', '2026-07-18');
 --
 -- Index pour les tables exportées
 --
