@@ -1,26 +1,53 @@
 <?php
 
-function connexionPDO() {
-    $login = "";
-    $mdp = "";
-    $bd = "";
-    $serveur = "";
+function connexionPDO()
+{
+    $login = "admin";
+    $mdp = "root";
+    $bd = "blog_db";
+    $serveur = "127.0.0.1";
+
+    $dsn = "mysql:host=$serveur;dbname=$bd;charset=utf8mb4";
+
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
 
     try {
-        $conn = new PDO("mysql:host=$serveur;dbname=$bd", $login, $mdp, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO($dsn, $login, $mdp, $options);
         return $conn;
     } catch (PDOException $e) {
-        print "Erreur de connexion PDO ";
+        header("Content-Type: text/plain");
+
+        echo "Erreur de connexion PDO: " . $e->getMessage() . "\n";
+
+        $sqlState = $e->getCode();
+        if (!empty($sqlState)) {
+            echo "SQLSTATE/Code: " . $sqlState . "\n";
+        }
+
+        echo "DSN: " . $dsn . "\n";
+        echo "Utilisateur: " . $login . "\n";
+        echo "Hôte: " . $serveur . "\n";
+        echo "Base: " . $bd . "\n";
         die();
     }
 }
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    // prog de test
-    header('Content-Type:text/plain');
+    header("Content-Type: text/plain");
 
-    echo "connexionPDO() : \n";
-    print_r(connexionPDO());
+    echo "Test de connexionPDO()...\n";
+    $cnx = connexionPDO();
+    if ($cnx instanceof PDO) {
+        echo "OK: Connexion établie.\n";
+        $stmt = $cnx->query("SELECT VERSION() AS version");
+        $info = $stmt ? $stmt->fetch() : null;
+        if ($info && isset($info["version"])) {
+            echo "Version serveur: " . $info["version"] . "\n";
+        }
+    }
 }
 ?>
