@@ -2,9 +2,9 @@
 
 function connexionPDO()
 {
-    $login = "admin";
-    $mdp = "root";
-    $bd = "blog_db";
+    $login = "userrestofr";
+    $mdp = "m0n_suPR_mdp_CQriZe";
+    $bd = "restofr";
     $serveur = "127.0.0.1";
 
     $dsn = "mysql:host=$serveur;dbname=$bd;charset=utf8mb4";
